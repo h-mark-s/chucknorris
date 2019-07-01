@@ -1,4 +1,9 @@
 pipeline {
+	environment {
+		registry = "hmarks/chucknorris"
+		registryCredential = 'hmarks_docker'
+		dockerImage = ''
+	}
 	agent any
 
 	stages {
@@ -17,8 +22,9 @@ pipeline {
 
 		stage ('Deploy') {
 			steps {
-				sh 'docker tag chucknorris hmarks/chucknorris'
-				sh 'docker push hmarks/chucknorris'
+				docker.withRegistry( '', registryCredential ) {
+				dockerImage.push()
+				}
 			}
 		}
 	
