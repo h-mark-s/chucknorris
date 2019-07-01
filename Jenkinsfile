@@ -16,7 +16,9 @@ pipeline {
 
 		stage ('Build') {
 			steps {
-				sh 'docker build -t chucknorris .'
+				script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }		
 			}
 		}
 
