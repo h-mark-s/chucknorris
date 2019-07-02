@@ -5,7 +5,9 @@ pipeline {
 		dockerImage = ''
 	}
 	agent any
-
+	when {
+		branch 'dev'
+	}
 	stages {
 
 		stage ('Checkout SCM') {
