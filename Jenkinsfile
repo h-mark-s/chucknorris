@@ -5,9 +5,6 @@ pipeline {
 		dockerImage = ''
 	}
 	agent any
-	when {
-		branch 'dev'
-	}
 	stages {
 
 		stage ('Checkout SCM') {
@@ -25,6 +22,9 @@ pipeline {
 		}
 
 		stage ('Deploy') {
+			when {
+				branch 'dev'
+			}
 			steps {
 				script {
 					docker.withRegistry( '', registryCredential ) {
