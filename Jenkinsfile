@@ -23,6 +23,9 @@ pipeline {
 		}
 
 		stage ('Deploy') {
+			when {
+				branch 'dev'
+			}
 			steps {
 				script {
 					docker.withRegistry( '', registryCredential ) {
