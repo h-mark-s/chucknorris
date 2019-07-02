@@ -8,9 +8,6 @@ pipeline {
 	stages {
 
 		stage ('Checkout SCM') {
-			when {
-				branch 'dev'
-			}
 			steps {
 				checkout scm
 			}
@@ -26,6 +23,9 @@ pipeline {
 
 		stage ('Deploy') {
 			steps {
+				when {
+					branch 'dev'
+				}
 				script {
 					docker.withRegistry( '', registryCredential ) {
 						dockerImage.push()
