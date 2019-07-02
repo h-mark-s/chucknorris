@@ -22,10 +22,10 @@ pipeline {
 		}
 
 		stage ('Deploy') {
+			when {
+				branch 'dev'
+			}
 			steps {
-				when {
-					branch 'dev'
-				}
 				script {
 					docker.withRegistry( '', registryCredential ) {
 						dockerImage.push()
