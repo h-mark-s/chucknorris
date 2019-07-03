@@ -41,7 +41,7 @@ pipeline {
 			}
 			steps {
 				withAWS(credentials: 'awsebcred', region: 'us-east-1') {
-					sh './deploy.sh'
+					sh 'sh ./deploy.sh'
 				}
 			}
 		}
