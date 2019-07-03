@@ -4,7 +4,7 @@ aws s3 cp ./Dockerrun.aws.json \
 aws elasticbeanstalk create-application-version \
  --application-name "chucknorris" \
  --version-label chucknorris \
- --source-bundle S3Bucket="elasticbeanstalk-us-east-1-124429370407",S3Key="/chucknorris/Dockerrun.aws.json" \
+ --source-bundle S3Bucket="elasticbeanstalk-us-east-1-124429370407",S3Key="chucknorris/Dockerrun.aws.json" \
  --auto-create-application
 
 aws elasticbeanstalk update-environment \
