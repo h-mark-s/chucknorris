@@ -22,15 +22,26 @@ pipeline {
 			}
 		}
 
-		stage ('Deploy') {
+		stage ('Push to Dockerhub') {
 			when {
 				branch 'dev'
 			}
 			steps {
 				script {
 					docker.withRegistry( '', registryCredential ) {
-						dockerImage.push()
+						dockerImage.push('latest')
 					}
+				}
+			}
+		}
+
+		stage ('Deploy to EBS') {
+			when {
+				branch 'dev'
+			}
+			steps {
+				withAWS(credentials: 'awsebcred', region: 'us-east-1') {
+					sh './deploy.sh'
 				}
 			}
 		}

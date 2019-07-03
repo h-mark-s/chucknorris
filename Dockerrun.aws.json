@@ -1,0 +1,11 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image":{
+		"Name":"hmarks/chucknorris"
+	},
+		"Ports": [ {
+			"ContainerPort": "4500",
+			"hostPort": "80"
+			}
+		]
+}
